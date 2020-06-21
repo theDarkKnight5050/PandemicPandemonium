@@ -348,7 +348,7 @@ public class echoAR : MonoBehaviour
                 videoPlayer.playOnAwake = false;                
 
                 // Attach a CustomBehaviour Component
-                videoPlane.AddComponent<CustomBehaviour>().entry = entry;
+                videoPlane.AddComponent<VirusBehaviour>().entry = entry;
 
                 // Set gameobject name to video name
                 videoPlane.name = videoHologram.getFilename();
@@ -462,7 +462,7 @@ public class echoAR : MonoBehaviour
             result.name = filenames[0];
             var glb = result.AddComponent<GLTFast.GlbAsset>();
             glb.url = serverURL + "&file=" + ((ModelHologram) entry.getHologram()).getStorageID();
-            result.AddComponent<CustomBehaviour>().entry = entry;
+            result.AddComponent<VirusBehaviour>().entry = entry;
             // Set game object parent and position
             result.transform.parent = this.gameObject.transform;
             result.transform.position = this.gameObject.transform.position;
@@ -476,7 +476,7 @@ public class echoAR : MonoBehaviour
         else if (extension == ".gltf") {
             GameObject result = Importer.LoadFromFile(filepath);
             result.name = filenames[0];
-            result.AddComponent<CustomBehaviour>().entry = entry;
+            result.AddComponent<VirusBehaviour>().entry = entry;
             // Set game object parent and position
             result.transform.parent = this.gameObject.transform;
             result.transform.position = this.gameObject.transform.position;
@@ -535,7 +535,7 @@ public class echoAR : MonoBehaviour
             string entryID = messageArray[1];
             GameObject gameObjectToDestroy = null;
             // Find entry and destroy content
-            foreach (CustomBehaviour cb in FindObjectsOfType<CustomBehaviour>())
+            foreach (VirusBehaviour cb in FindObjectsOfType<VirusBehaviour>())
             {
                 if (cb.entry.getId().Equals(entryID))
                 {
