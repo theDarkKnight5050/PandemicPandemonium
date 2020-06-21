@@ -80,6 +80,5 @@ public class VirusBehaviour : MonoBehaviour
             isSpawned = !isSpawned;
             speed = Random.Range(1 / level, 5 / level);
         }
-        
     }
 }

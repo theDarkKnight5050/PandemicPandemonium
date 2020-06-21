@@ -19,7 +19,7 @@ public class Mask : MonoBehaviour
     private Vector3 initialObjectPosition;
     private Vector3 myDisplacement;
     private Collider myCollider;
-    private float moveSpeed = 1.0f; 
+    private float moveSpeed = 10.0f; 
 
     // Use this for initialization
     void Start() {
@@ -65,14 +65,14 @@ public class Mask : MonoBehaviour
         Vector3 rightLeftMove = Vector3.zero;
         if(accelerationX >= 0.3 || accelerationX <= -0.3)
         {
-            rightLeftMove = camRight * -accelerationX;
+            rightLeftMove = camRight * accelerationX;
         }
  
         float accelerationY = Input.acceleration.y + 0.45f;
         Vector3 upDownMove = Vector3.zero;
         if(accelerationY >= 0.3 || accelerationY < 0.3)
         {
-            upDownMove = camFor * -accelerationY;
+            upDownMove = camFor * accelerationY;
         }
  
         // Creates movement vector
