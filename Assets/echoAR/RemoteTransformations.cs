@@ -87,7 +87,7 @@ public class RemoteTransformations : MonoBehaviour
                 offset -= Time.time % 360 * speed;
         }
 
-        // Handle rotation
+        // // Handle rotation
         Quaternion targetQuaternion = initialWorldSpaceRotation;
         float x = 0, y = 0, z = 0;
         
