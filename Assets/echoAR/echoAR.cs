@@ -463,11 +463,11 @@ public class echoAR : MonoBehaviour
             Debug.Log("Found: " + result.name);
             var glb = result.AddComponent<GLTFast.GlbAsset>();
             glb.url = serverURL + "&file=" + ((ModelHologram) entry.getHologram()).getStorageID();
-            // if (result.name == "Human Immunodeficiency Virus.glb") {
+            if (result.name == "Human Immunodeficiency Virus.glb") {
                  result.AddComponent<VirusBehaviour>().entry = entry;
-            // } else if (result.name == "Portal.glb") {
-            //     result.AddComponent<Destination>().entry = entry;
-            // }
+            } else if (result.name == "gas mask.glb") {
+                result.AddComponent<Mask>().entry = entry;
+            }
             // Set game object parent and position
             result.transform.parent = this.gameObject.transform;
             result.transform.position = this.gameObject.transform.position;
