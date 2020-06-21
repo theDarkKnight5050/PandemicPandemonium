@@ -15,6 +15,7 @@ using System.Globalization;
 public class VirusBehaviour : MonoBehaviour
 {
     private float POS_FACTOR;
+    private const float END = 10f;
 
     [HideInInspector]
     public Entry entry;
@@ -57,9 +58,12 @@ public class VirusBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update() {
         Vector3 positionOffest = Vector3.zero;
-        positionOffest.y += 0.001f;
+        positionOffest.z += 0.01f;
         
         myDisplacement += positionOffest * POS_FACTOR;
+        if (myDisplacement.z >= END) {
+            myDisplacement = Vector3.zero;
+        }
         this.gameObject.transform.position = initialObjectPosition + myDisplacement;
     }
 }

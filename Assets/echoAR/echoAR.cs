@@ -460,9 +460,14 @@ public class echoAR : MonoBehaviour
         if (extension == ".glb") {
             GameObject result = new GameObject();
             result.name = filenames[0];
+            Debug.Log("Found: " + result.name);
             var glb = result.AddComponent<GLTFast.GlbAsset>();
             glb.url = serverURL + "&file=" + ((ModelHologram) entry.getHologram()).getStorageID();
-            result.AddComponent<VirusBehaviour>().entry = entry;
+            // if (result.name == "Human Immunodeficiency Virus.glb") {
+                 result.AddComponent<VirusBehaviour>().entry = entry;
+            // } else if (result.name == "Portal.glb") {
+            //     result.AddComponent<Destination>().entry = entry;
+            // }
             // Set game object parent and position
             result.transform.parent = this.gameObject.transform;
             result.transform.position = this.gameObject.transform.position;
