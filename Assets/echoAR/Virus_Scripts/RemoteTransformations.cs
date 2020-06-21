@@ -43,19 +43,8 @@ public class RemoteTransformations : MonoBehaviour
             Debug.Log(e);
         }
 
-    }
-
-    public void Update()
-    {
         string value = "";
         float positionFactor = 1f;
-
-        // Attach to parent
-        if (this.gameObject.transform.parent) {
-            initialWorldSpacePosition =  this.gameObject.transform.parent.transform.position;
-            positionFactor = this.gameObject.transform.parent.transform.localScale.magnitude;
-        }
-
         // Handle translation
         Vector3 positionOffest = Vector3.zero;
         if (entry.getAdditionalData().TryGetValue("x", out value))
@@ -71,6 +60,17 @@ public class RemoteTransformations : MonoBehaviour
             positionOffest.z = float.Parse(value, CultureInfo.InvariantCulture);
         }
         this.gameObject.transform.position = initialWorldSpacePosition + positionOffest * positionFactor;
+    }
+
+    public void Update(){
+        string value = "";
+        float positionFactor = 1f;
+
+        // Attach to parent
+        if (this.gameObject.transform.parent) {
+            initialWorldSpacePosition =  this.gameObject.transform.parent.transform.position;
+            positionFactor = this.gameObject.transform.parent.transform.localScale.magnitude;
+        }
 
         // Handle spinning
         float speed = 150;
@@ -122,5 +122,7 @@ public class RemoteTransformations : MonoBehaviour
         VideoPlayer videoPlayer = this.GetComponent<VideoPlayer>();
         for (ushort i = 0; videoPlayer != null && i < videoPlayer.controlledAudioTrackCount; ++i)
             videoPlayer.SetDirectAudioMute(i, mute);
+
     }
+        
 }
