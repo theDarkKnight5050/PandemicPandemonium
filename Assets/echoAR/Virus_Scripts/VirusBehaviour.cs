@@ -58,11 +58,7 @@ public class VirusBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update() {
         Vector3 positionOffest = Vector3.zero;
-<<<<<<< HEAD
-        positionOffest.z += 0.01f;
-=======
         positionOffest.z += 0.005f;
->>>>>>> 924f1502f76547334c0a58a08d5fd83ff5d6f0f7
         
         myDisplacement += positionOffest * POS_FACTOR;
         if (myDisplacement.z >= END) {
