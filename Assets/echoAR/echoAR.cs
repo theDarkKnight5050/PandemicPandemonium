@@ -33,7 +33,7 @@ public class echoAR : MonoBehaviour
         #if UNITY_EDITOR
             Debug.unityLogger.logEnabled = true;
         #else
-            Debug.unityLogger.logEnabled = false;
+            Debug.logger.logEnabled = false;
         #endif
         
         // The echoAR server details
