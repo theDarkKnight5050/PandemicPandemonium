@@ -51,11 +51,17 @@ public class CustomBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        string value = "";
-        if (entry.getAdditionalData() != null && entry.getAdditionalData().TryGetValue("scale", out value))
+        /*
+        int counter = 0; 
+        if (counter > 1000)
         {
-            // Set name
-            this.gameObject.scale = value * 2;
+            string value = "";
+            if (entry.getAdditionalData() != null && entry.getAdditionalData().TryGetValue("scale", out value))
+            {
+                // Set name
+                this.gameObject.scale = "3";
+            }
         }   
+        */
     }
 }
