@@ -27,6 +27,8 @@ public class CustomBehaviour : MonoBehaviour
     [HideInInspector]
     public Entry entry;
 
+    private GameObject yellow; 
+
     /// <summary>
     /// EXAMPLE BEHAVIOUR
     /// Queries the database and names the object based on the result.
@@ -46,22 +48,40 @@ public class CustomBehaviour : MonoBehaviour
             // Set name
             this.gameObject.name = value;
         }
+
+        yellow = GameObject.Find("echoAR");
+        string value2 = "1a5a6fb4-9623-4ecf-824e-4e14219782f8";
+        string dir = "direction"; 
+        string whichdir = "left"; 
+
+        //StartCoroutine(yellow.GetComponent<echoAR>().UpdateEntryData(value2, dir, whichdir));
+        //yellow.GetComponent<echoAR>().UpdateEntryData(value2, dir, whichdir); 
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*
+        
         int counter = 0; 
-        if (counter > 1000)
+        //frame rate is 60fps typically
+        string value = "1a5a6fb4-9623-4ecf-824e-4e14219782f8";
+            string dir = "direction"; 
+            string whichdir = "left";  
+        StartCoroutine(yellow.GetComponent<echoAR>().UpdateEntryData(value, dir, whichdir));
+        if (counter > 600)
         {
-            string value = "";
-            if (entry.getAdditionalData() != null && entry.getAdditionalData().TryGetValue("scale", out value))
+            //string value = "1a5a6fb4-9623-4ecf-824e-4e14219782f8";
+            //string dir = "direction"; 
+            //string whichdir = "left"; 
+           /* if (entry.getAdditionalData() != null )
             {
-                // Set name
-                this.gameObject.scale = "3";
-            }
+                //yellow.GetComponent<echoAR>().UpdateEntryData(value, dir, whichdir); 
+                //echoAR.UpdateEntryData(value, dir, whichdir); 
+                //gameObject.Find("echoAR"); 
+                //gameObject.Find("echoAR").GetComponent<echoAR>().UpdateEntryData(value, dir, whichdir); 
+                //echoAR.UpdateEntryData("1a5a6fb4-9623-4ecf-824e-4e14219782f8", "color", "orange"); 
+            }*/
         }   
-        */
+        
     }
 }
