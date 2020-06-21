@@ -57,7 +57,7 @@ public class VirusBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update() {
         Vector3 positionOffest = Vector3.zero;
-        positionOffest.y += 0.001f;
+        positionOffest.z += 0.01f;
         
         myDisplacement += positionOffest * POS_FACTOR;
         this.gameObject.transform.position = initialObjectPosition + myDisplacement;
