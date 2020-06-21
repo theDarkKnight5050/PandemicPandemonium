@@ -16,10 +16,16 @@ public class VirusBehaviour : MonoBehaviour
 {
     private float POS_FACTOR;
     private const float END = 10f;
+    private enum Stage : int {
+        l1 = 10000,
+        l2 = 1000,
+        l3 = 100
+    }
 
     [HideInInspector]
     public Entry entry;
 
+    private bool isSpawned;
     private Vector3 initialObjectPosition;
     private Vector3 myDisplacement;
     private Collider myCollider;
@@ -29,6 +35,7 @@ public class VirusBehaviour : MonoBehaviour
         // Add RemoteTransformations script to object and set its entry
         POS_FACTOR = this.gameObject.transform.parent.transform.localScale.magnitude;
         this.gameObject.AddComponent<RemoteTransformations>().entry = entry;
+        isSpawned = (Random.Range(0, 100) < 5);
 
         try {
             initialObjectPosition = this.gameObject.transform.position;
@@ -57,13 +64,19 @@ public class VirusBehaviour : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        Vector3 positionOffest = Vector3.zero;
-        positionOffest.z += 0.005f;
-        
-        myDisplacement += positionOffest * POS_FACTOR;
-        if (myDisplacement.z >= END) {
-            myDisplacement = Vector3.zero;
+        if (isSpawned) {
+            Vector3 positionOffest = Vector3.zero;
+            positionOffest.z += 0.005f;
+            
+            myDisplacement += positionOffest * POS_FACTOR;
+            if (myDisplacement.z >= END) {
+                myDisplacement = Vector3.zero;
+                isSpawned = !isSpawned;
+            }
+            this.gameObject.transform.position = initialObjectPosition + myDisplacement;
+        } else if (Random.Range(0, (float)Stage.l3) < 1) {
+            isSpawned = !isSpawned;
         }
-        this.gameObject.transform.position = initialObjectPosition + myDisplacement;
+        
     }
 }
