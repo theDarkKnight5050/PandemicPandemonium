@@ -26,13 +26,13 @@ public class VirusBehaviour : MonoBehaviour
     private bool isSpawned;
     private Vector3 initialObjectPosition;
     private Vector3 myDisplacement;
-    private Collider myCollider;
 
     // Use this for initialization
     void Start() {
         // Add RemoteTransformations script to object and set its entry
         POS_FACTOR = this.gameObject.transform.parent.transform.localScale.magnitude;
         this.gameObject.AddComponent<RemoteTransformations>().entry = entry;
+        this.gameObject.AddComponent<BoxCollider>();
         isSpawned = (Random.Range(0, 100) < 5);
 
         try {

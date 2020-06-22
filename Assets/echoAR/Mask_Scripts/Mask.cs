@@ -25,6 +25,7 @@ public class Mask : MonoBehaviour
     void Start() {
         // Add RemoteTransformations script to object and set its entry
         this.gameObject.AddComponent<RemoteTransformations>().entry = entry;
+        this.gameObject.AddComponent<BoxCollider>();
 
         try {
             initialObjectPosition = this.gameObject.transform.position;
@@ -77,11 +78,10 @@ public class Mask : MonoBehaviour
  
         // Creates movement vector
         Vector3 moveVector = rightLeftMove + upDownMove;
+        moveVector.y = 0.0f;
+        moveVector.z = 0.0f;
  
-        if(moveVector != Vector3.zero)
-        {
-            Vector3 translationVector = moveVector * moveSpeed * Time.deltaTime;
-            this.gameObject.transform.Translate(translationVector, Space.World);
-        }
+        Vector3 translationVector = moveVector * moveSpeed * Time.deltaTime;
+        this.gameObject.transform.Translate(translationVector, Space.World);
     }
 }
