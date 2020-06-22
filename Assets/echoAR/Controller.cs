@@ -10,14 +10,17 @@ public class Controller : MonoBehaviour
     private List<Collider> virusColliders = new List<Collider>{null, null, null};
 
     private int numLives = 3;
+    private const float BUFFER = 3f;
+    private float lastCollision;
 
     void Start() {
-
     }
 
     void Update() {
         if (mask == null) {
             instantiate();
+        } else if(lastCollision >= 0) {
+            lastCollision -= Time.deltaTime;
         } else {
             foreach (Collider vC in virusColliders) {
                 if (maskCollider.bounds.Intersects(vC.bounds)) {
@@ -25,6 +28,7 @@ public class Controller : MonoBehaviour
                         gameOver();
                     }
                     Debug.Log("Lives left: " + numLives);
+                    lastCollision = BUFFER;
                 }
             }
         }   

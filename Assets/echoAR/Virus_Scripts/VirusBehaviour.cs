@@ -50,26 +50,14 @@ public class VirusBehaviour : MonoBehaviour
         myDisplacement = Vector3.zero;
         Debug.Log("Init Position: " + initialObjectPosition);
         // Get init position from database
-        string value = "";
-        if (entry.getAdditionalData().TryGetValue("x", out value))
-        {
-            initialObjectPosition.x = float.Parse(value, CultureInfo.InvariantCulture);
-        }
-        if (entry.getAdditionalData().TryGetValue("y", out value))
-        {
-            initialObjectPosition.y = float.Parse(value, CultureInfo.InvariantCulture);
-        }
-        if (entry.getAdditionalData().TryGetValue("z", out value))
-        {
-            initialObjectPosition.z = float.Parse(value, CultureInfo.InvariantCulture);
-        }
-        Debug.Log("Remote Position: " + initialObjectPosition);
+        pullInit();
     }
 
     // Update is called once per frame
     void Update() {
         float level = (float)Stage.l2;
         if (isSpawned) {
+            pullInit();
             Vector3 positionOffest = Vector3.zero;
             positionOffest.z += speed;
             
@@ -83,5 +71,19 @@ public class VirusBehaviour : MonoBehaviour
             isSpawned = !isSpawned;
             speed = Random.Range(1 / level, 5 / level);
         }
+    }
+
+    void pullInit() {
+        string value = "";
+        if (entry.getAdditionalData().TryGetValue("x", out value)) {
+            initialObjectPosition.x = float.Parse(value, CultureInfo.InvariantCulture);
+        }
+        if (entry.getAdditionalData().TryGetValue("y", out value)) {
+            initialObjectPosition.y = float.Parse(value, CultureInfo.InvariantCulture);
+        }
+        if (entry.getAdditionalData().TryGetValue("z", out value)) {
+            initialObjectPosition.z = float.Parse(value, CultureInfo.InvariantCulture);
+        }
+        Debug.Log("Remote Position: " + initialObjectPosition);
     }
 }
