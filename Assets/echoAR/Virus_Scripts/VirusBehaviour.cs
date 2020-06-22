@@ -24,6 +24,8 @@ public class VirusBehaviour : MonoBehaviour
     public Entry entry;
 
     private bool isSpawned;
+    private Vector3 initialWorldSpacePosition;
+
     private Vector3 initialObjectPosition;
     private Vector3 myDisplacement;
 
@@ -36,9 +38,9 @@ public class VirusBehaviour : MonoBehaviour
         isSpawned = (Random.Range(0, 100) < 5);
 
         try {
-            initialObjectPosition = this.gameObject.transform.position;
+            initialWorldSpacePosition = (this.gameObject.transform.parent) ? this.gameObject.transform.parent.transform.position : this.gameObject.transform.position;
             myDisplacement = Vector3.zero;
-            Debug.Log("Init Position: " + initialObjectPosition);
+            Debug.Log("Init Position: " + initialWorldSpacePosition);
         } catch (System.Exception e) {
             Debug.Log(e);
         }
@@ -51,33 +53,33 @@ public class VirusBehaviour : MonoBehaviour
     void Update() {
         float level = (float)Stage.l2;
         if (isSpawned) {
-            // pullInit();
-            Vector3 positionOffest = Vector3.zero;
-            positionOffest.z += speed;
-            
-            myDisplacement += positionOffest * POS_FACTOR;
+            Vector3 initPos = pullInit();
+
+            myDisplacement.z += speed * POS_FACTOR;
             if (myDisplacement.z >= END) {
                 myDisplacement = Vector3.zero;
                 isSpawned = !isSpawned;
             }
-            this.gameObject.transform.position = initialObjectPosition + myDisplacement;
+            this.gameObject.transform.position = initPos + myDisplacement;
         } else if (Random.Range(0, level) < 1) {
             isSpawned = !isSpawned;
             speed = Random.Range(1 / level, 5 / level);
         }
     }
 
-    void pullInit() {
+    Vector3 pullInit() {
         string value = "";
+        Vector3 ret = Vector3.zero;
         if (entry.getAdditionalData().TryGetValue("x", out value)) {
-            initialObjectPosition.x = float.Parse(value, CultureInfo.InvariantCulture);
+            ret.x = float.Parse(value, CultureInfo.InvariantCulture);
         }
         if (entry.getAdditionalData().TryGetValue("y", out value)) {
-            initialObjectPosition.y = float.Parse(value, CultureInfo.InvariantCulture);
+            ret.y = float.Parse(value, CultureInfo.InvariantCulture);
         }
         if (entry.getAdditionalData().TryGetValue("z", out value)) {
-            initialObjectPosition.z = float.Parse(value, CultureInfo.InvariantCulture);
+            ret.z = float.Parse(value, CultureInfo.InvariantCulture);
         }
-        Debug.Log("Remote Position: " + initialObjectPosition);
+        Debug.Log("Remote Position: " + ret);
+        return ret;
     }
 }
