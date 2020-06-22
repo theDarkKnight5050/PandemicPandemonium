@@ -51,6 +51,12 @@ public class VirusBehaviour : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
+        // Attach to parent
+        if (this.gameObject.transform.parent) {
+            initialWorldSpacePosition =  this.gameObject.transform.parent.transform.position;
+            POS_FACTOR = this.gameObject.transform.parent.transform.localScale.magnitude;
+        }
+
         float level = (float)Stage.l2;
         if (isSpawned) {
             Vector3 myPos = pullInit();
