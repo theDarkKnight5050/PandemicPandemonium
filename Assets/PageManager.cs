@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManager; 
+using UnityEngine.SceneManagement; 
 
 public class PageManager : MonoBehaviour
 {
     public void StartGame()
     {
         SceneManager.loadScene("SimpleAR"); 
+
     }
 }
