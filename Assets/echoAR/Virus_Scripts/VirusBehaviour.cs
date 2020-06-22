@@ -6,11 +6,13 @@
 * https://www.echoar.xyz/terms, or another agreement                      *
 * between echoAR, Inc. and you, your company or other organization.       *
 ***************************************************************************/
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using SimpleJSON;
 using System.Globalization;
+using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARSubsystems;
 
 public class VirusBehaviour : MonoBehaviour
 {
@@ -30,6 +32,9 @@ public class VirusBehaviour : MonoBehaviour
     private Vector3 initialObjectPosition;
     private Vector3 myDisplacement;
     private Collider myCollider;
+    private ARRaycastManager m_RaycastManager;
+    List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
+    GameObject m_PlacedPrefab;
 
     // Use this for initialization
     void Start() {
@@ -45,7 +50,8 @@ public class VirusBehaviour : MonoBehaviour
         } catch (System.Exception e) {
             Debug.Log(e);
         }
-
+        myDisplacement = Vector3.zero;
+        Debug.Log("Init Position: " + initialObjectPosition);
         // Get init position from database
         string value = "";
         if (entry.getAdditionalData().TryGetValue("x", out value))
