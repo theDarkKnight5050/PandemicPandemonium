@@ -53,14 +53,14 @@ public class VirusBehaviour : MonoBehaviour
     void Update() {
         float level = (float)Stage.l2;
         if (isSpawned) {
-            Vector3 initPos = pullInit();
+            Vector3 myPos = pullInit();
 
             myDisplacement.z += speed * POS_FACTOR;
             if (myDisplacement.z >= END) {
                 myDisplacement = Vector3.zero;
                 isSpawned = !isSpawned;
             }
-            this.gameObject.transform.position = initPos + myDisplacement;
+            this.gameObject.transform.position = initialWorldSpacePosition + myPos + myDisplacement;
         } else if (Random.Range(0, level) < 1) {
             isSpawned = !isSpawned;
             speed = Random.Range(1 / level, 5 / level);
