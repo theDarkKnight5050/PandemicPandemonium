@@ -7,7 +7,8 @@ public class PageManager : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.loadScene("SimpleAR"); 
+        SceneManager.LoadScene("SimpleAR"); 
 
     }
+
 }
