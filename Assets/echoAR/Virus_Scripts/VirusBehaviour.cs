@@ -1,18 +1,13 @@
-﻿/**************************************************************************
-* Copyright (C) echoAR, Inc. 2018-2020.                                   *
-* echoAR, Inc. proprietary and confidential.                              *
-*                                                                         *
-* Use subject to the terms of the Terms of Service available at           *
-* https://www.echoar.xyz/terms, or another agreement                      *
-* between echoAR, Inc. and you, your company or other organization.       *
-***************************************************************************/
-using System.Collections.Generic;
+﻿/**
+* Pandemic Pandemonium
+*
+* @Authors Mira Jambusaria, David Sun, Ahmed Abdalla
+*/
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 using SimpleJSON;
 using System.Globalization;
-using UnityEngine.XR.ARFoundation;
-using UnityEngine.XR.ARSubsystems;
 
 public class VirusBehaviour : MonoBehaviour
 {
@@ -49,8 +44,7 @@ public class VirusBehaviour : MonoBehaviour
         } catch (System.Exception e) {
             Debug.Log(e);
         }
-        myDisplacement = Vector3.zero;
-        Debug.Log("Init Position: " + initialObjectPosition);
+
         // Get init position from database
         pullInit();
     }
