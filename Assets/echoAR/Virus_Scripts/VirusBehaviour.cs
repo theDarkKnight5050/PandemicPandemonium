@@ -57,7 +57,7 @@ public class VirusBehaviour : MonoBehaviour
     void Update() {
         float level = (float)Stage.l2;
         if (isSpawned) {
-            pullInit();
+            // pullInit();
             Vector3 positionOffest = Vector3.zero;
             positionOffest.z += speed;
             
