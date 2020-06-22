@@ -98,7 +98,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/echoAR/Examples/sample.unity
     guid: 066bb82b1e9e4a94a8371767678ccb00
-  - enabled: 1
+  - enabled: 0
     path: Assets/StartMenu.unity
     guid: ffbdf2b7f3d003e4ab129358b6adec26
   m_configObjects:
