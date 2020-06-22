@@ -93,6 +93,9 @@ EditorBuildSettings:
     path: Assets/AR Foundation/Scenes/UX/SampleUXScene.unity
     guid: 3b42d67a72bbc4004bf713db0e312326
   - enabled: 1
+    path: Assets/StartMenu.unity
+    guid: ffbdf2b7f3d003e4ab129358b6adec26
+  - enabled: 1
     path: Assets/echoAR/SimpleAR.unity
     guid: 08db97161a99efe408b98f11dafd7c00
   - enabled: 0
