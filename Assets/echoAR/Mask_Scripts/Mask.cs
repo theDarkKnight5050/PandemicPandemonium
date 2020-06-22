@@ -1,4 +1,4 @@
-﻿/**************************************************************************
+/**************************************************************************
 * Copyright (C) echoAR, Inc. 2018-2020.                                   *
 * echoAR, Inc. proprietary and confidential.                              *
 *                                                                         *
@@ -83,5 +83,13 @@ public class Mask : MonoBehaviour
  
         Vector3 translationVector = moveVector * moveSpeed * Time.deltaTime;
         this.gameObject.transform.Translate(translationVector, Space.World);
+		
+		if (this.gameObject.transform.position.x >= 5) {
+			this.gameObject.transform.position.x = 5f;
+		}
+		
+		if (this.gameObject.transform.position.x <= -5) {
+			this.gameObject.transform.position.x = -5f;
+		}
     }
 }
