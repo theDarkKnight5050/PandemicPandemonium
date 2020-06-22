@@ -26,7 +26,6 @@ public class echoAR : MonoBehaviour
 
     // echoAR Database
     static public Database dbObject;
-    static private int virusNum = 0;
 
     void Start()
     {
@@ -349,7 +348,7 @@ public class echoAR : MonoBehaviour
                 videoPlayer.playOnAwake = false;                
 
                 // Attach a CustomBehaviour Component
-                videoPlane.AddComponent<VirusBehaviour>().entry = entry;
+                videoPlane.AddComponent<CustomBehaviour>().entry = entry;
 
                 // Set gameobject name to video name
                 videoPlane.name = videoHologram.getFilename();
@@ -461,16 +460,9 @@ public class echoAR : MonoBehaviour
         if (extension == ".glb") {
             GameObject result = new GameObject();
             result.name = filenames[0];
-            Debug.Log("Found: " + result.name);
             var glb = result.AddComponent<GLTFast.GlbAsset>();
             glb.url = serverURL + "&file=" + ((ModelHologram) entry.getHologram()).getStorageID();
-            if (result.name == "Human Immunodeficiency Virus.glb") {
-                 result.AddComponent<VirusBehaviour>().entry = entry;
-                 result.name = "COVID-19" + virusNum++;
-            } else if (result.name == "gas mask.glb") {
-                result.AddComponent<Mask>().entry = entry;
-                result.name = "N9500";
-            }
+            result.AddComponent<CustomBehaviour>().entry = entry;
             // Set game object parent and position
             result.transform.parent = this.gameObject.transform;
             result.transform.position = this.gameObject.transform.position;
@@ -484,7 +476,7 @@ public class echoAR : MonoBehaviour
         else if (extension == ".gltf") {
             GameObject result = Importer.LoadFromFile(filepath);
             result.name = filenames[0];
-            result.AddComponent<VirusBehaviour>().entry = entry;
+            result.AddComponent<CustomBehaviour>().entry = entry;
             // Set game object parent and position
             result.transform.parent = this.gameObject.transform;
             result.transform.position = this.gameObject.transform.position;
@@ -543,7 +535,7 @@ public class echoAR : MonoBehaviour
             string entryID = messageArray[1];
             GameObject gameObjectToDestroy = null;
             // Find entry and destroy content
-            foreach (VirusBehaviour cb in FindObjectsOfType<VirusBehaviour>())
+            foreach (CustomBehaviour cb in FindObjectsOfType<CustomBehaviour>())
             {
                 if (cb.entry.getId().Equals(entryID))
                 {

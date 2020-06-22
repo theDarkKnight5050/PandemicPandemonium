@@ -463,7 +463,7 @@ namespace AsImpL
             } else
             {   
                 // Add CustomBehaviour script to object and set its entry
-                obj.AddComponent<VirusBehaviour>().entry = entry;
+                obj.AddComponent<CustomBehaviour>().entry = entry;
                 // Set game object parent and position
                 obj.transform.parent = this.gameObject.transform;
                 obj.transform.position = this.gameObject.transform.position;

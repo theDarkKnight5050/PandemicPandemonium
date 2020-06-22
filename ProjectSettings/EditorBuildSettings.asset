@@ -95,6 +95,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/echoAR/SimpleAR.unity
     guid: 08db97161a99efe408b98f11dafd7c00
+  - enabled: 0
+    path: Assets/echoAR/Examples/sample.unity
+    guid: 066bb82b1e9e4a94a8371767678ccb00
   m_configObjects:
     com.unity.xr.arcore.PlayerSettings: {fileID: 11400000, guid: 01d478835a5d7a244b7e06c6e990492c,
       type: 2}
