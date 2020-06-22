@@ -26,6 +26,7 @@ public class echoAR : MonoBehaviour
 
     // echoAR Database
     static public Database dbObject;
+    static private int virusNum = 0;
 
     void Start()
     {
@@ -465,8 +466,10 @@ public class echoAR : MonoBehaviour
             glb.url = serverURL + "&file=" + ((ModelHologram) entry.getHologram()).getStorageID();
             if (result.name == "Human Immunodeficiency Virus.glb") {
                  result.AddComponent<VirusBehaviour>().entry = entry;
+                 result.name = "COVID-19" + virusNum++;
             } else if (result.name == "gas mask.glb") {
                 result.AddComponent<Mask>().entry = entry;
+                result.name = "N9500";
             }
             // Set game object parent and position
             result.transform.parent = this.gameObject.transform;
